@@ -1,5 +1,4 @@
 import doctest
-import math
 
 # En este ejercicio desarrollaremos diferentes metodos para encontrar la raiz de una funcion y calcular 
 # el numero de iteraciones posibles en cada caso.
@@ -64,7 +63,7 @@ def h(x):
 def newtonraphson(a, error):
     """
     >>> print(newtonraphson(-5,0.001))
-    ('La raiz buscada es', -4.0, 'con', 2, 'veces iteradas.')
+    ('La raiz buscada es', -2.38767081568645922, 'con', 5, 'veces iteradas.')
     
     """
     iteraciones = 1
@@ -86,6 +85,12 @@ def newtonraphson(a, error):
 
 
 if __name__=="__main__":
+    bisec = biseccion(-5,-1,0.001)
+    sec = secante(-5,-1,0.001)
+    newton = newtonraphson(-5,0.001)
+    print("\nLa diferencia entre Biseccion y Secante es de:", abs(bisec[1]-sec[1]), "con una diferencia de", abs(bisec[3]-sec[3]), "iteraciones.")
+    print("\nLa diferencia entre Biseccion y Newton es de:", abs(bisec[1]-newton[1]), "con una diferencia de", abs(bisec[3]-newton[3]), "iteraciones.")
+    print("\nLa diferencia entre Newton y Secante es de:", abs(newton[1]-sec[1]), "con una diferencia de", abs(newton[3]-sec[3]), "iteraciones.")
     doctest.testmod()
 
 
