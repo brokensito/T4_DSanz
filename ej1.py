@@ -73,6 +73,7 @@ def diferencia(datos, codigo):
     return "El almacaneamiento antes de compresion (bits):", pre_huffman, "\nEl almacenamiento despues de compresion (bits):", post_huffman
 
 def codigo_huffman(datos):
+
     # crear_dict = calcular_diccionario(datos) """Crea un diccionario en base a los datos, en este caso ya creamos el diccionario para pasar valores."""
 
     letras = datos.keys()
@@ -129,16 +130,14 @@ def decodificar_huffman(datos, huffman):
     return formato
 
 
-# datos = {"A":11, "B":2, "C":4, "D":3, "E":14, "G":3, "I":6, "L":6, "M":3, "N":6, "O":7, "P":4, "Q":1, "R":10, "S":4, "T":3, "U":4, "V":2, " ":17, ",":2}
-
 if __name__ == "__main__":
 
     datos = {"A":11, "B":2, "C":4, "D":3, "E":14, "G":3, "I":6, "L":6, "M":3, "N":6, "O":7, "P":4, "Q":1, "R":10, "S":4, "T":3, "U":4, "V":2, " ":17, ",":2}
-    codigo = codigo_huffman(datos)
+    codigo = codigo_huffman(datos) # codificamos en base al diccionario
     print("Codificacion final:", codigo[0])
     mensaje1 = "10001011101011000010111010001110000011011000000111100111101001011000011010011100110100010111010111111101000011110011111100111101000110001100000010110101111011111110111010110110111001110110111100111111100101001010010100000101101011000101100110100011100100101100001100100011010110101011111111111011011101110010000100101011000111111100010001110110011001011010001101111101011010001101110000000111001001010100011111100001100101101011100110011110100011000110000001011010111110011100"
     mensaje2 = "0110101011011100101000111101011100110111010110110100001000111010100101111010011111110111001010001111010111001101110101100001100010011010001110010010001100010110011001110010010000111101111010"
-    decodificar1 = decodificar_huffman(mensaje1, codigo[1])
+    decodificar1 = decodificar_huffman(mensaje1, codigo[1]) # decodificamos los mensajes
     decodificar2 = decodificar_huffman(mensaje2, codigo[1])
     print("El primer mensaje resuelto es:", decodificar1)
     print("El segundo mensaje resuleto es:", decodificar2)   
