@@ -40,6 +40,7 @@ class Graph(object):
         return self.grafo[nodo1][nodo2]
 
 def djikstra(grafo, n_inicial):
+
     no_visitados = list(grafo.sacar_nodos())
 
     # Creamos un diccionario para guardar el camino mas corto a medida que recorremos el grafo
@@ -69,6 +70,7 @@ def djikstra(grafo, n_inicial):
         for vecino in vecinos:
             valor_posible = camino_corto[min_actual] + grafo.diferencia(min_actual, vecino)
             if valor_posible < camino_corto[vecino]:
+
                 camino_corto[vecino] = valor_posible
 
                 # Actualizamos la mejor ruta
@@ -89,35 +91,49 @@ def mostrar(nodos_previos, camino_corto, n_inicial, n_final):
 
     camino.append(n_inicial)
 
-    print("El camino corto posible es:", camino_corto)
+    print("El camino corto posible es: {}".format(camino_corto[n_final]))
     print(" --> ".join(reversed(camino)))
 
 
 if __name__=="__main__":
 
-    nodos = ["Kings Cross", "Waterloo", "Victoria Train Station", "Liverpool Street Station", "St.Pancras", "London Eye"]
+    nodos = [
+        "Kings Cross",
+
+     "Waterloo", 
+
+     "Victoria Train Station",
+
+      "Liverpool Street Station",
+
+       "St.Pancras",
+
+        "London Eye"
+        ]
 
     g_inicial = {}
     for nodo in nodos:
         g_inicial[nodo] = {}
 
-    g_inicial["Kings Cross"]["Waterloo"] = 
-    g_inicial["Kings Cross"]["Waterloo"] = 
-    g_inicial["Kings Cross"]["Waterloo"] = 
-    g_inicial["Kings Cross"]["Waterloo"] = 
-    g_inicial["Kings Cross"]["Waterloo"] = 
-    g_inicial["Kings Cross"]["Waterloo"] = 
-    g_inicial["Kings Cross"]["Waterloo"] = 
-    g_inicial["Kings Cross"]["Waterloo"] = 
+    g_inicial["Victoria Train Station"]["London Eye"] = 2
+    g_inicial["St.Pancras"]["Victoria Train Station"] = 3
+    g_inicial["St.Pancras"]["Liverpool Street Station"] = 1
+    g_inicial["Victoria Train Station"]["St.Pancras"] = 7
+    g_inicial["Liverpool Street Station"]["Waterloo"] = 10
+    g_inicial["London Eye"]["Waterloo"] = 4
+    g_inicial["London Eye"]["Kings Cross"] = 4
 
     grafo = Graph(nodos, g_inicial)
 
     nodos_previos, camino_corto = djikstra(grafo=grafo, n_inicial="Kings Cross")
     mostrar(nodos_previos, camino_corto, n_inicial="Kings Cross", n_final="Waterloo")
 
-    nodos_previos, camino_corto = djikstra(grafo=grafo, n_inicial="Kings Cross")
-    mostrar(nodos_previos, camino_corto, n_inicial="Kings Cross", n_final="Waterloo")
+    nodos_previos, camino_corto = djikstra(grafo=grafo, n_inicial="Victoria Train Station")
+    mostrar(nodos_previos, camino_corto, n_inicial="Victoria Train Station", n_final="Liverpool Street Station")
 
+    nodos_previos, camino_corto = djikstra(grafo=grafo, n_inicial="St.Pancras")
+    mostrar(nodos_previos, camino_corto, n_inicial="St.Pancras", n_final="Kings Cross")
 
+    
 
 
